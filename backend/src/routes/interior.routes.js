@@ -17,11 +17,11 @@ router.route("/")
     .get(getAllInteriors)
     .post(verifyJWT, upload.array("images", 10), createInterior);
 
+router.route("/agent-interiors").get(verifyJWT, getAgentInteriors);
+
 router.route("/:id")
     .get(getInteriorById)
     .delete(verifyJWT, deleteInterior)
     .patch(verifyJWT, updateInterior);
-
-router.route("/agent-interiors").get(verifyJWT, getAgentInteriors);
 
 export default router;

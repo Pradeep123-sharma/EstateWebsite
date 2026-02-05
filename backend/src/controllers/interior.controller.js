@@ -57,7 +57,7 @@ const getInteriorById = asyncHandler(async (req, res) => {
 });
 
 const getAgentInteriors = asyncHandler(async (req, res) => {
-    const interiors = await Interior.find({ agent: req.user._id });
+    const interiors = await Interior.find({ agent: req.user._id }).sort({ createdAt: -1 });
     return res.status(200).json(new ApiResponse(200, interiors, "Agent interiors fetched successfully"));
 });
 

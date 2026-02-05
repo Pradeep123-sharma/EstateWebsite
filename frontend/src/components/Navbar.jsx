@@ -24,7 +24,7 @@ function Navbar() {
                         <span className="font-playfair text-2xl font-bold text-slate-900 leading-none">LRD Groups</span>
                     </div>
 
-                    <div className="hidden md:flex items-center gap-10">
+                    <div className="hidden min-[900px]:flex items-center gap-10">
                         <button onClick={() => scrollToSection("home")} className="text-base font-medium text-slate-700 cursor-pointer relative py-2 transition-colors hover:text-cyan-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-cyan-600 after:transition-all after:duration-300 hover:after:w-full font-inter">
                             <Link to="/" className="no-underline text-inherit block">Home</Link>
                         </button>
@@ -57,13 +57,13 @@ function Navbar() {
                         )}
                     </div>
 
-                    <button className="md:hidden bg-transparent border-none cursor-pointer text-slate-700 p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} data-testid="mobile-menu-toggle">
+                    <button className="min-[900px]:hidden bg-transparent border-none cursor-pointer text-slate-700 p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} data-testid="mobile-menu-toggle">
                         {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
                 </div>
 
                 {mobileMenuOpen && (
-                    <div className="flex flex-col gap-4 px-8 pt-4 pb-8 bg-white border-t border-slate-200 md:hidden animate-in fade-in slide-in-from-top-4 duration-300 font-inter" data-testid="mobile-menu">
+                    <div className="flex flex-col gap-4 px-8 pt-4 pb-8 bg-white border-t border-slate-200 min-[900px]:hidden animate-in fade-in slide-in-from-top-4 duration-300 font-inter" data-testid="mobile-menu">
                         <Link to="/" className="text-base font-medium text-slate-700 p-2 rounded-lg hover:bg-slate-100 hover:text-cyan-600 transition-colors no-underline">Home</Link>
                         <Link to="/properties" className="text-base font-medium text-slate-700 p-2 rounded-lg hover:bg-slate-100 hover:text-cyan-600 transition-colors no-underline">Properties</Link>
                         <button onClick={() => scrollToSection("interior")} className="text-left text-base font-medium text-slate-700 p-2 rounded-lg hover:bg-slate-100 hover:text-cyan-600 transition-colors bg-transparent border-none outline-none" data-testid="mobile-nav-interior">Interior</button>

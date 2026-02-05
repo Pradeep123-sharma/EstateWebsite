@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { Home, Users, Eye, TrendingUp, Plus, Building2 } from 'lucide-react';
+import { Home, Users, Eye, TrendingUp, Plus, Building2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -30,7 +30,7 @@ const viewData = [
 ];
 
 const AgentDashboard = () => {
-    const { user } = useAuth();
+    const { user, loading: authLoading } = useAuth();
     const [activeTab, setActiveTab] = useState('overview');
     const [properties, setProperties] = useState([]);
     const [interiors, setInteriors] = useState([]);
@@ -83,9 +83,28 @@ const AgentDashboard = () => {
         }
     };
 
-    // Protect route: Redirect if not agent
+    // Protect route: Redirect if not agent, but wait for auth to load
+    if (authLoading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+            </div>
+        );
+    }
+
     if (!user || user.role !== 'agent') {
         return <Navigate to="/" replace />;
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="text-center">
+                    <Loader2 className="w-8 h-8 animate-spin text-blue-600 mx-auto mb-4" />
+                    <p className="text-slate-500">Loading your dashboard...</p>
+                </div>
+            </div>
+        );
     }
 
     const StatCard = ({ title, value, icon: Icon, trend }) => (

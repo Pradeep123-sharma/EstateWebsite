@@ -115,7 +115,7 @@ const deleteProperty = asyncHandler(async (req, res) => {
 });
 
 const getAgentProperties = asyncHandler(async (req, res) => {
-    const properties = await Property.find({ agent: req.user._id });
+    const properties = await Property.find({ agent: req.user._id }).sort({ createdAt: -1 });
     return res.status(200).json(new ApiResponse(200, properties, "Agent properties fetched successfully"));
 });
 
